@@ -32,7 +32,8 @@ class Sequential:
         self.x = x
         self.y = y
         self.forward(x)
-        l = loss(y, self.layers[-1].neurons.flatten())
+        y_pred = self.layers[-1].neurons.flatten()
+        l = loss(y, y_pred)
         print('loss = ', l)
     def add(self, layer):
         self.layers.append(layer)
