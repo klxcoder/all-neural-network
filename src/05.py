@@ -1,13 +1,7 @@
 # simple linear regression
-
+from simple_load_linear_regression import simple_load_linear_regression
 import numpy as np
 import matplotlib.pyplot as plt
-
-def get_data():
-    n = 10
-    x = np.random.uniform(-1, 1, n) * 20
-    y = 3 * x + 5 + np.random.uniform(-1, 1, n) * 5
-    return x, y
 
 def linear_regression(x, y, learning_rate=0.001, iterations=15):
     m = 0
@@ -27,7 +21,7 @@ def linear_regression(x, y, learning_rate=0.001, iterations=15):
     return m, b, loss_history
 
 def main():
-    x, y = get_data()
+    x, y = simple_load_linear_regression()
 
     _, axes = plt.subplots(1, 2, figsize=(12, 6))
 
