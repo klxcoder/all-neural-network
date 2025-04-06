@@ -12,7 +12,7 @@ def main():
     model.compile()
 
     _, axes = plt.subplots(1, 2, figsize=(12, 6))
-a
+
     axes[0].scatter(x.flatten(), y, color='blue', label='Original data')
     axes[0].set_title('y = f(x)')
     axes[0].set_xlabel('x')
