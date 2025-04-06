@@ -2,6 +2,6 @@ class Sequential:
     def __init__(self):
         print('init Sequential model')
 
-models = {
+models = type('models', (object,), {
     'Sequential': Sequential,
-}
+})

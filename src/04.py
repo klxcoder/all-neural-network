@@ -1,3 +1,3 @@
 from models import models
 
-model = models['Sequential']()
+model = models.Sequential()
