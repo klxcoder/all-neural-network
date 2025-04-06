@@ -1,6 +1,5 @@
 # simple linear regression
 from simple_load_linear_regression import simple_load_linear_regression
-import numpy as np
 import matplotlib.pyplot as plt
 
 def linear_regression(x, y, learning_rate=0.001, iterations=15):
