@@ -42,12 +42,16 @@ class Sequential:
 
         for i in range(iterations):
             self.forward(x)
+            dloss_dw = 1
+            dloss_db = 1
             for layer_index in range(len(self.layers) - 2, -1, -1):
                 cur_layer = self.layers[layer_index + 1]
                 y_pred = cur_layer.neurons.flatten()
                 l = loss(y, y_pred)
-                dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
-                dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
+                _dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
+                _dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
+                dloss_dw *= _dloss_dw
+                dloss_db *= _dloss_db
                 self.weights[layer_index] = self.weights[layer_index] - learning_rate * dloss_dw
                 cur_layer.biases = cur_layer.biases - learning_rate * dloss_db
                 if layer_index == len(self.layers) - 2:
