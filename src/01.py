@@ -12,7 +12,7 @@ class Data:
 # from pandas.api.types import CategoricalDtype
 
 # Load the Iris dataset
-iris: tuple[Bunch, tuple[Data, ...]] = load_iris(return_X_y=False)
+iris: tuple[Bunch, tuple[Data, ...]] = load_iris()
 
 print(iris)
 
