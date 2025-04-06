@@ -15,9 +15,6 @@ def linear_regression(x, y, learning_rate=0.001, iterations=1500):
         m = m - learning_rate * m_gradient
         b = b - learning_rate * b_gradient
         loss = (1 / n) * sum((y - y_pred) ** 2)
-        print('loss = ', loss)
-        print('m_gradient = ', m_gradient)
-        print('b_gradient = ', b_gradient)
         loss_history.append(loss)
 
     return m, b, loss_history
