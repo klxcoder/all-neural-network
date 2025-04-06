@@ -31,14 +31,24 @@ class Sequential:
         """
         self.x = x
         self.y = y
-        self.forward(x)
-        y_pred = self.layers[-1].neurons.flatten()
-        l = loss(y, y_pred)
-        print('loss = ', l)
-        dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
-        print('dloss_dw = ', dloss_dw)
-        dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
-        print('dloss_db = ', dloss_db)
+
+        learning_rate = 0.001
+        iterations = 15
+        loss_history = []
+
+        for i in range(iterations):
+            self.forward(x)
+            y_pred = self.layers[-1].neurons.flatten()
+            l = loss(y, y_pred)
+            print('loss = ', l)
+            dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
+            print('dloss_dw = ', dloss_dw)
+            dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
+            print('dloss_db = ', dloss_db)
+            self.weights[0] = self.weights[0] - learning_rate * dloss_dw
+            # db = db - learning_rate * dloss_db
+            loss_history.append(l)
+
     def add(self, layer):
         self.layers.append(layer)
 
