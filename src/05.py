@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def get_data():
-    x = np.arange(-10, 11)
-    y = 3*x*x + 2*x + 5
+    x = np.random.uniform(-1, 1, 100) * 20
+    y = 3 * x + 5 + np.random.uniform(-1, 1, 100) * 5
     return x, y
 
 def main():
@@ -13,7 +13,7 @@ def main():
 
     _, axes = plt.subplots(1, 2, figsize=(12, 6))
 
-    axes[0].plot(x, y)
+    axes[0].scatter(x, y)
     axes[0].set_title('y = f(x)')
     axes[0].set_xlabel('x')
     axes[0].set_ylabel('y')
