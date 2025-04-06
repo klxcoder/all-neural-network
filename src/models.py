@@ -22,7 +22,11 @@ class Sequential:
     def forward(self, x):
         self.layers[0].neurons = np.array(x)
         for layer_index in range(len(self.layers) - 1):
-            self.layers[layer_index + 1].neurons = np.dot(self.layers[layer_index].neurons, self.weights[layer_index]) + self.layers[layer_index + 1].biases
+            cur_layer = self.layers[layer_index + 1]
+            pre_layer = self.layers[layer_index]
+            cur_layer.neurons = np.dot(pre_layer.neurons, self.weights[layer_index]) + cur_layer.biases
+            if cur_layer.activation == 'relu':
+                cur_layer.neurons = np.maximum(0, cur_layer.neurons)
     def fit(self, x, y, learning_rate = 0.001, iterations = 1500):
         """
         :param x: input (features)
@@ -39,12 +43,13 @@ class Sequential:
         for i in range(iterations):
             self.forward(x)
             for layer_index in range(len(self.layers) - 2, -1, -1):
-                y_pred = self.layers[layer_index+1].neurons.flatten()
+                cur_layer = self.layers[layer_index + 1]
+                y_pred = cur_layer.neurons.flatten()
                 l = loss(y, y_pred)
                 dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
                 dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
                 self.weights[layer_index] = self.weights[layer_index] - learning_rate * dloss_dw
-                self.layers[layer_index+1].biases = self.layers[layer_index+1].biases - learning_rate * dloss_db
+                cur_layer.biases = cur_layer.biases - learning_rate * dloss_db
                 if layer_index == len(self.layers) - 2:
                     loss_history.append(l)
         return  loss_history
