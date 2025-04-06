@@ -1,25 +1,24 @@
-from typing import Tuple, Any, List, Dict
 # import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.utils import Bunch
-import numpy as np
-from numpy.typing import NDArray
+# import numpy as np
+# from numpy.typing import NDArray
+from dataclasses import dataclass
+
+@dataclass
+class Data:
+    data: list[list[float]]
+
 # from pandas.api.types import CategoricalDtype
 
-# type Data =
-
 # Load the Iris dataset
-iris_bunch_tuple: Tuple[Bunch, Tuple[Any, ...]] = load_iris(return_X_y=False)
-
-# print(iris_bunch_tuple)
-
-iris: Tuple[Bunch, Tuple[Any]] = iris_bunch_tuple
+iris: tuple[Bunch, tuple[Data, ...]] = load_iris(return_X_y=False)
 
 print(iris)
 
-X: NDArray[np.float64] = iris.data
+# X: NDArray[np.float64] = iris.data
 
-print(X)
+# print(X)
 
 # y: NDArray[np.int64] = iris.target
 # feature_names: List[str] = iris.feature_names
