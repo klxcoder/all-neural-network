@@ -1,7 +1,6 @@
 from simple_load_linear_regression import simple_load_linear_regression
 from models import models
 from layers import layers
-import numpy as np
 
 x, y = simple_load_linear_regression()
 x = x.reshape((-1, 1))
