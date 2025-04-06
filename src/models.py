@@ -16,6 +16,8 @@ class Sequential:
         print('layers')
         for layer in self.layers:
             print(layer)
+        if len(self.layers) < 2:
+            raise ValueError("layers length must be at least 2")
     def add(self, layer):
         self.layers.append(layer)
 
