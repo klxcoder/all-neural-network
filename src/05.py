@@ -15,6 +15,12 @@ def main():
 
     axes[0].plot(x, y)
     axes[0].set_title('y = f(x)')
+    axes[0].set_xlabel('x')
+    axes[0].set_ylabel('y')
+
+    axes[1].set_title('loss')
+    axes[1].set_xlabel('t')
+    axes[1].set_ylabel('loss')
 
     plt.show()
 if __name__ == "__main__":
