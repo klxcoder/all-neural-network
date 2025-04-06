@@ -6,6 +6,7 @@ class Dense:
         :param n: number of neurons
         :param activation: 'relu' | 'softmax'
         """
+        self.n = n
         self.neurons = np.zeros(n)
         self.biases = np.zeros(n)
     def __repr__(self):
