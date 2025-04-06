@@ -22,7 +22,7 @@ class Sequential:
     def forward(self, x):
         self.layers[0].neurons = np.array(x)
         for layer_index in range(len(self.layers) - 1):
-            self.layers[layer_index + 1].neurons = np.dot(self.layers[layer_index].neurons, self.weights[layer_index])
+            self.layers[layer_index + 1].neurons = np.dot(self.layers[layer_index].neurons, self.weights[layer_index]) + self.layers[layer_index + 1].biases
     def fit(self, x, y):
         """
         :param x: input (features)
@@ -46,7 +46,7 @@ class Sequential:
             dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
             print('dloss_db = ', dloss_db)
             self.weights[0] = self.weights[0] - learning_rate * dloss_dw
-            # db = db - learning_rate * dloss_db
+            self.layers[1].biases = self.layers[1].biases - learning_rate * dloss_db
             loss_history.append(l)
         return  loss_history
 
