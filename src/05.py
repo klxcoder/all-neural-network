@@ -5,5 +5,6 @@ import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     x = np.arange(10)
-    plt.plot(x, x*x)
+    _, axes = plt.subplots(1, 2, figsize=(12, 6))
+    axes[0].plot(x, x*x)
     plt.show()
