@@ -4,7 +4,7 @@ np.random.seed(1)
 
 def loss(y, y_pred):
     mse = (1 / len(y)) * sum((y - y_pred) ** 2)
-    return  mse
+    return mse
 
 class Sequential:
     def __init__(self):
@@ -23,17 +23,17 @@ class Sequential:
         self.layers[0].neurons = np.array(x)
         for layer_index in range(len(self.layers) - 1):
             self.layers[layer_index + 1].neurons = np.dot(self.layers[layer_index].neurons, self.weights[layer_index]) + self.layers[layer_index + 1].biases
-    def fit(self, x, y):
+    def fit(self, x, y, learning_rate = 0.001, iterations = 1500):
         """
         :param x: input (features)
         :param y: output (labels)
+        :param learning_rate: learning_rate
+        :param iterations: iterations
         :return:
         """
         self.x = x
         self.y = y
 
-        learning_rate = 0.001
-        iterations = 1500
         loss_history = []
 
         for i in range(iterations):
