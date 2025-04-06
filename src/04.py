@@ -7,7 +7,7 @@ def main():
     x, y = simple_load_linear_regression()
     x = x.reshape((-1, 1))
     model = models.Sequential()
-    model.add(layers.Dense(1, 'relu'))
+    model.add(layers.Dense(1))
     model.add(layers.Dense(1, 'softmax'))
     model.compile()
 

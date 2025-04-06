@@ -50,6 +50,8 @@ class Sequential:
         return  loss_history
 
     def add(self, layer):
+        if len(self.layers) == 0 and layer.activation != '':
+            raise ValueError("Should not apply activation function to the input layer")
         self.layers.append(layer)
 
 models = type('models', (object,), {
