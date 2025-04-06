@@ -49,7 +49,8 @@ class Sequential:
                 y_pred = cur_layer.neurons.flatten()
                 l = loss(y, y_pred)
                 _dloss_dw = (2 / x.shape[0]) * np.dot(x.T, (y_pred - y))
-                _dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y)
+                _dloss_db = (2 / x.shape[0]) * np.sum(y_pred - y, axis=0, keepdims=True)
+                print(cur_layer.biases)
                 dloss_dw *= _dloss_dw
                 dloss_db *= _dloss_db
                 self.weights[layer_index] = self.weights[layer_index] - learning_rate * dloss_dw
