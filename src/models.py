@@ -45,6 +45,7 @@ class Sequential:
             dloss_dw = 1
             dloss_db = 1
             for layer_index in range(len(self.layers) - 2, -1, -1):
+                # TODO: Take into account derivative of ReLU function
                 cur_layer = self.layers[layer_index + 1]
                 y_pred = cur_layer.neurons.flatten()
                 l = loss(y, y_pred)
