@@ -33,7 +33,7 @@ class Sequential:
         self.y = y
 
         learning_rate = 0.001
-        iterations = 15
+        iterations = 1500
         loss_history = []
 
         for i in range(iterations):

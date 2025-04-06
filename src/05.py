@@ -2,7 +2,7 @@
 from simple_load_linear_regression import simple_load_linear_regression
 import matplotlib.pyplot as plt
 
-def linear_regression(x, y, learning_rate=0.001, iterations=15):
+def linear_regression(x, y, learning_rate=0.001, iterations=1500):
     m = 0
     b = 0
     n = len(x)
