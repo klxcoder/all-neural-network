@@ -48,6 +48,7 @@ class Sequential:
             self.weights[0] = self.weights[0] - learning_rate * dloss_dw
             # db = db - learning_rate * dloss_db
             loss_history.append(l)
+        return  loss_history
 
     def add(self, layer):
         self.layers.append(layer)

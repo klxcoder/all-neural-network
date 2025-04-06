@@ -17,7 +17,7 @@ def main():
     axes[0].set_title('y = f(x)')
     axes[0].set_xlabel('x')
     axes[0].set_ylabel('y')
-    model.fit(x, y)
+    loss_history = model.fit(x, y)
     y_pred = model.layers[-1].neurons.flatten()
     axes[0].plot(x.flatten(), y_pred, color='red', label='Fitted line')
     axes[0].legend()
@@ -25,7 +25,7 @@ def main():
     axes[1].set_title('loss')
     axes[1].set_xlabel('t')
     axes[1].set_ylabel('loss')
-    # axes[1].plot(loss_history)
+    axes[1].plot(loss_history)
 
     plt.show()
 if __name__ == "__main__":
