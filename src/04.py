@@ -3,3 +3,4 @@ from layers import layers
 
 model = models.Sequential()
 dense = layers.Dense(10, 'relu')
+model.fit([1, 2, 3], [2, 4, 6])
