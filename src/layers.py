@@ -8,6 +8,8 @@ class Dense:
         """
         self.neurons = np.zeros(n)
         self.biases = np.zeros(n)
+    def __repr__(self):
+        return f"layer: {len(self.neurons)} neurons and biases\n{self.neurons}\n{self.biases}"
 
 layers = type('models', (object,), {
     'Dense': Dense,

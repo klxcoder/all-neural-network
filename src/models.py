@@ -13,6 +13,9 @@ class Sequential:
         self.x = x
         self.y = y
         print('Will fit:', x, y)
+        print('layers')
+        for layer in self.layers:
+            print(layer)
     def add(self, layer):
         self.layers.append(layer)
 
