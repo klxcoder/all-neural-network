@@ -76,13 +76,17 @@ class Sequential:
         print('output = ', output)
         print('learning_rate = ', learning_rate)
         print('iterations = ', iterations)
+        for t in range(iterations):
+            self.forward(input)
 
 def main():
     x, y = simple_load_linear_regression()
+    x = x.reshape((-1, 1))
 
     model = Sequential()
     model.add(Dense(1))
     model.add(Dense(1, 'softmax'))
+    model.compile()
     model.fit(x, y, learning_rate=0.1, iterations=1)
     print(model.layers[-1].output)
 
