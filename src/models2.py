@@ -26,7 +26,7 @@ class Sequential:
         # array of dict layers
         # include input layer (layer 0) and output layer (layer n+1)
         # each layer contains dict {n, input, activation, output}
-        self.layers = []
+        self.layers: list[Dense] = []
         # array of weights
         self.weights = []
         # array of biases
@@ -72,7 +72,10 @@ class Sequential:
             pre_layer = self.layers[i-1]
             cur_layer.input = np.dot(pre_layer.output, self.weights[i-1]) + self.biases[i-1]
             # TODO: Use cur_layer.activation to update cur_layer.output
-            cur_layer.output = cur_layer.input # a = x for now
+            if cur_layer.activation == 'relu':
+                cur_layer.output = np.maximum(0, cur_layer.input)
+            else:
+                cur_layer.output = cur_layer.input # a = x for now
     def fit(self, input, output, learning_rate = 0.001, iterations = 1500):
         print('Will fit')
         print('input = ', input)
