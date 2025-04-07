@@ -18,11 +18,11 @@ class Dense:
         """
         self.n = n
         self.activation = activation
-        self.input = np.zeros(n)
-        self.output = np.zeros(n)
 
 class Sequential:
-    def __init__(self):
+    def __init__(self, batch_size: int):
+        # batch_size define Training Examples Number for Mini-Batch
+        self.batch_size = batch_size
         # array of dict layers
         # include input layer (layer 0) and output layer (layer n+1)
         # each layer contains dict {n, input, activation, output}
@@ -40,6 +40,9 @@ class Sequential:
         """
         if len(self.layers) == 0 and layer.activation != 'linear':
             raise ValueError("The input layer must use linear activation function")
+        # Init layer input and output
+        layer.input = np.zeros((self.batch_size, layer.n))
+        layer.output = np.zeros((self.batch_size, layer.n))
         # Add layer to the neural network
         self.layers.append(layer)
         # Update number of hidden layers
@@ -55,7 +58,7 @@ class Sequential:
         for i in range(self.n + 1):
             weight = np.zeros((self.layers[i].n, self.layers[i + 1].n))
             self.weights.append(weight)
-            bias = np.zeros((self.layers[i].n, self.layers[i + 1].n))
+            bias = np.zeros((self.batch_size, self.layers[i + 1].n))
             self.biases.append(bias)
     def forward(self, input):
         """
