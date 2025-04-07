@@ -8,6 +8,19 @@ import numpy as np
 
 np.random.seed(1)
 
+import numpy as np
+
+class Dense:
+    def __init__(self, n: int, activation: str = 'linear'):
+        """
+        :param n: number of neurons
+        :param activation: 'linear' | 'relu' | 'softmax'
+        """
+        self.n = n
+        self.activation = activation
+        self.input = np.zeros(n)
+        self.output = np.zeros(n)
+
 class Sequential:
     def __init__(self):
         # array of dict layers
@@ -59,3 +72,11 @@ class Sequential:
             cur_layer.output = cur_layer.input # a = x for now
     def fit(self, input, learning_rate = 0.001, iterations = 1500):
         pass
+
+def main():
+    model = Sequential()
+    model.add(Dense(1))
+    model.add(Dense(1, 'softmax'))
+
+if __name__ == "__main__":
+    main()
