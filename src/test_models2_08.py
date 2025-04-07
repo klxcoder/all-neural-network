@@ -51,19 +51,25 @@ def test_models2():
         [0, 4, 4, -2],
     ])
     model.forward(x0)
-    # check model.layers[0].input
+    # test model.layers[0].input
     assert (model.layers[0].input == x0).all()
-    # check model.layers[0].output
+    # test model.layers[0].output
     assert (model.layers[0].output == x0).all()
-    # check model.layers[1].input
+    # test model.layers[1].input
     x1 = np.array([
         [14, 16, -2],
         [-27, 33, -12],
     ])
     assert (model.layers[1].input == x1).all()
-    # check model.layers[1].output
+    # test model.layers[1].output
     a1 = np.array([
         [14, 16, 0],
         [0, 33, 0],
     ])
     assert (model.layers[1].output == a1).all()
+    # test model.layers[2].input
+    x2 = np.array([
+        [83, 68],
+        [69, 36],
+    ])
+    assert (model.layers[2].input == x2).all()
