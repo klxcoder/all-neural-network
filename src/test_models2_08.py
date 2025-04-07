@@ -74,4 +74,8 @@ def test_models2():
     ])
     assert (model.layers[2].input == x2).all()
     # test model.layers[2].output
-    print(model.layers[2].output)
+    a2 = np.array([
+        [9.99999694e-01, 3.05902227e-07],
+        [1.00000000e+00, 4.65888615e-15],
+    ])
+    assert np.allclose(model.layers[2].output, a2)
