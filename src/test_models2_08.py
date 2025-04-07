@@ -73,3 +73,5 @@ def test_models2():
         [69, 36],
     ])
     assert (model.layers[2].input == x2).all()
+    # test model.layers[2].output
+    print(model.layers[2].output)

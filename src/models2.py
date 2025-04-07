@@ -10,6 +10,13 @@ import numpy as np
 
 np.random.seed(1)
 
+# Function to apply softmax along the features axis (axis 1)
+def softmax(x, axis=1):
+    # Subtract the max for numerical stability
+    x = x - np.max(x, axis=axis, keepdims=True)
+    exp_x = np.exp(x)
+    return exp_x / np.sum(exp_x, axis=axis, keepdims=True)
+
 class Dense:
     def __init__(self, n: int, activation: str = 'linear'):
         """
@@ -71,11 +78,12 @@ class Sequential:
             cur_layer = self.layers[i]
             pre_layer = self.layers[i-1]
             cur_layer.input = np.dot(pre_layer.output, self.weights[i-1]) + self.biases[i-1]
-            # TODO: Use cur_layer.activation to update cur_layer.output
             if cur_layer.activation == 'relu':
                 cur_layer.output = np.maximum(0, cur_layer.input)
+            elif cur_layer.activation == 'softmax':
+                cur_layer.output = softmax(cur_layer.input)
             else:
-                cur_layer.output = cur_layer.input # a = x for now
+                cur_layer.output = cur_layer.input  # a = x
     def fit(self, input, output, learning_rate = 0.001, iterations = 1500):
         print('Will fit')
         print('input = ', input)
