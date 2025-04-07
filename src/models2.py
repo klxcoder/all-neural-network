@@ -55,6 +55,7 @@ class Sequential:
             cur_layer = self.layers[i]
             pre_layer = self.layers[i-1]
             cur_layer.input = np.dot(pre_layer.output, self.weights[i-1]) + self.biases[i-1]
-            cur_layer.output = cur_layer.input
+            # TODO: Use cur_layer.activation to update cur_layer.output
+            cur_layer.output = cur_layer.input # a = x for now
     def fit(self, input, learning_rate = 0.001, iterations = 1500):
         pass
