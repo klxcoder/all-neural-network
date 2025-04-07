@@ -4,11 +4,11 @@ Can forward and backpropagation (gradient descent)
 Can apply activation function: ReLU or softmax
 """
 
+from simple_load_linear_regression import simple_load_linear_regression
+
 import numpy as np
 
 np.random.seed(1)
-
-import numpy as np
 
 class Dense:
     def __init__(self, n: int, activation: str = 'linear'):
@@ -70,13 +70,21 @@ class Sequential:
             cur_layer.input = np.dot(pre_layer.output, self.weights[i-1]) + self.biases[i-1]
             # TODO: Use cur_layer.activation to update cur_layer.output
             cur_layer.output = cur_layer.input # a = x for now
-    def fit(self, input, learning_rate = 0.001, iterations = 1500):
-        pass
+    def fit(self, input, output, learning_rate = 0.001, iterations = 1500):
+        print('Will fit')
+        print('input = ', input)
+        print('output = ', output)
+        print('learning_rate = ', learning_rate)
+        print('iterations = ', iterations)
 
 def main():
+    x, y = simple_load_linear_regression()
+
     model = Sequential()
     model.add(Dense(1))
     model.add(Dense(1, 'softmax'))
+    model.fit(x, y, learning_rate=0.1, iterations=1)
+    print(model.layers[-1].output)
 
 if __name__ == "__main__":
     main()
